@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Source') {
             steps {
-                git url: 'https://github.com/ronaldofreitas/api-flask.git', branch: 'main'
+                git url: 'https://github.com/ronaldofreitas/webapiflask.git', branch: 'main'
             }
         }
 
