@@ -15,7 +15,7 @@ spec:
       containers:
       - name: appflask
         #image: ronafreitasweb/webapiflask:v1
-        image: ronafreitasweb/webapiflask:{{tag}}
+        image: ronafreitasweb/webapiflask:latest
         ports:
           - containerPort: 5000
 
