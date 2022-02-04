@@ -3,10 +3,10 @@ FROM python:3.9.10
 EXPOSE 5000
 
 # local
-COPY requirements.txt . 
+#COPY requirements.txt . 
 
 # jenkins gke
-#COPY ./src/requirements.txt .
+COPY ./src/requirements.txt .
 
 RUN python -m pip install -r requirements.txt
 
