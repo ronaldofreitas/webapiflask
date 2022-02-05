@@ -1,5 +1,4 @@
 from flask import Flask
-import os
 
 app = Flask(__name__)
 
@@ -8,4 +7,4 @@ def hello():
     return 'hello CI, olá CD'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="localhost", port=8080, debug=True)

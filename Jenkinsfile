@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     dockerapp = docker.build("ronafreitasweb/webapiflask:${env.BUILD_ID}",
-                    '-f ./src/Dockerfile .')
+                    '-f ./app/Dockerfile .')
                 }
             }
         }
