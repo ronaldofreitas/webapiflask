@@ -1,4 +1,4 @@
-FROM python:3.9-slim AS develop-stage
+FROM python:3.9-10 AS develop-stage
 RUN python -m venv /venv
 ENV PATH="/venv/bin:$PATH"
 WORKDIR /app
@@ -15,7 +15,7 @@ COPY ./app/requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 #CMD ["python", "main.py"]
 
-FROM python:3.9-slim
+FROM python:3.9-10
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 ENV PATH="/venv/bin:$PATH"
