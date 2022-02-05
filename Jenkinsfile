@@ -33,7 +33,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         dockerapp.push('latest')
-                        dockerapp.push("${env.BUILD_ID}")
+                        dockerapp.push("v${env.BUILD_ID}")
                     }
                 }
             }
@@ -42,10 +42,10 @@ pipeline {
         stage('Deployt to K8S') {
             steps {
                 echo "Deployment started ..."
-                sh 'pwd'
-                sh "sed -i 's/{{tagversion}}/${env.BUILD_ID}/g' deployment.yaml"
+                sh "VERSION BUILD = v${env.BUILD_ID}"
+                sh "sed -i 's/{{tagversion}}/v${env.BUILD_ID}/g' deployment.yaml"
                 echo "Start deployment of deployment.yaml"
-				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: false])
 			    echo "Deployment Finished ..."
             }
         }

@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: appflask
+  name: webapiflask
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: appflask
+      app: webapiflask
   template:
     metadata:
       labels:
-        app: appflask # mesmo do matchLabels acima
+        app: webapiflask # mesmo do matchLabels acima
     spec:
       containers:
-      - name: appflask
+      - name: webapiflask
         #image: ronafreitasweb/webapiflask:v1
         image: ronafreitasweb/webapiflask:{{tagversion}}
         ports:
@@ -25,12 +25,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: appflask
+  name: webapiflask
 spec:
-  selector:
-    app: appflask # template:  metadata:  labels:
-  ports:
-  - port: 80
-    targetPort: 5000 # explicação no video em 02:29:00
-    #nodePort: 30000 # explicação a partir de 01:51:00
   type: LoadBalancer # NodePort - LoadBalancer
+  selector:
+    app: webapiflask # template:  metadata:  labels:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000 # explicação no video em 02:29:00
+      #nodePort: 30000 # explicação a partir de 01:51:00
