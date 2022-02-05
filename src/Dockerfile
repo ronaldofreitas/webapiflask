@@ -7,7 +7,7 @@ EXPOSE 5000
 
 # jenkins gke
 COPY ./src/requirements.txt .
-#COPY ./src/gunicorn_starter.sh .
+COPY ./src/gunicorn_config.py .
 
 RUN pip install -r requirements.txt
 
