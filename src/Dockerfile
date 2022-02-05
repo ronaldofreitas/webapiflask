@@ -13,6 +13,6 @@ RUN pip install -r requirements.txt
 WORKDIR /app
 COPY . /app
 
-ENTRYPOINT ["./gunicorn_starter.sh"]
+ENTRYPOINT ["./app/gunicorn_starter.sh"]
 #CMD ["gunicorn", "--workers=3", "--bind", "0.0.0.0:5000", "app:app"]
 #CMD ["gunicorn", "--workers=3", "--bind", "0.0.0.0:5000", "-c", "config.py", "app:app"]
