@@ -7,12 +7,13 @@ EXPOSE 5000
 
 # jenkins gke
 COPY ./src/requirements.txt .
+COPY ./src/gunicorn_starter.sh .
 
 RUN pip install -r requirements.txt
 
 WORKDIR /app
 COPY . /app
 
-ENTRYPOINT ["./app/gunicorn_starter.sh"]
+ENTRYPOINT ["./gunicorn_starter.sh"]
 #CMD ["gunicorn", "--workers=3", "--bind", "0.0.0.0:5000", "app:app"]
 #CMD ["gunicorn", "--workers=3", "--bind", "0.0.0.0:5000", "-c", "config.py", "app:app"]
