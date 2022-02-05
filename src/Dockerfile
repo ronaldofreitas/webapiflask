@@ -15,4 +15,4 @@ COPY . /app
 #WORKDIR /app
 
 ENV PORT 5000
-CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
+CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 src.app:app
