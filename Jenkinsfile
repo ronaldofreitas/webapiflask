@@ -1,6 +1,11 @@
 pipeline {
     agent any
-
+    environment {
+        PROJECT_ID = 'kubeops-339014'
+        CLUSTER_NAME = 'cluster-1'
+        LOCATION = 'us-central1-c'
+        CREDENTIALS_ID = 'k8s-key'
+    }
     stages {
         stage('Checkout Source') {
             steps {
@@ -17,7 +22,13 @@ pipeline {
             }
         }
 
-        stage('Push Image Docker') {
+        stage('Tests') {
+            steps {
+                echo 'Tests OK!'
+            }
+        }
+
+        stage('Push Docker Image') {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
@@ -28,15 +39,14 @@ pipeline {
             }
         }
 
-        stage('Deploy to GKE') {
-            environment {
-                tag_version = "${env.BUILD_ID}"
-            }
-
-            steps{
-                //sh 'sed -i "s/{{tag}}/$tag_version/g" ./deployment.yaml'
-                sh "sed -i 's/webapiflask:latest/webapiflask:${env.BUILD_ID}/g' deployment.yaml"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+        stage('Deployt to K8S') {
+            steps {
+                echo "Deployment started ..."
+                sh 'pwd'
+                sh "sed -i 's/{{tagversion}}/${env.BUILD_ID}/g' deployment.yaml"
+                echo "Start deployment of deployment.yaml"
+				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+			    echo "Deployment Finished ..."
             }
         }
 
