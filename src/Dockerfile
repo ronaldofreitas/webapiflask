@@ -19,7 +19,7 @@ WORKDIR /app
 #ENTRYPOINT ["sh", "gunicorn_starter.sh"]
 
 #CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
-CMD ["/usr/local/bin/gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "-t", "30", "--pythonpath", "/app", "myapp:create_app()"]
+CMD ["/usr/local/bin/gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "-t", "30", "--pythonpath", "/app", "app:create_app()"]
 
 #ENTRYPOINT ["./gunicorn_starter.sh"]
 #CMD ["gunicorn"  , "--bind", "0.0.0.0:5000", "app:app"]
