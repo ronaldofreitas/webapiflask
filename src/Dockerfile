@@ -7,7 +7,7 @@ EXPOSE 5000
 
 # jenkins gke
 COPY ./src/requirements.txt .
-COPY ./src/gunicorn_config.py .
+#COPY ./src/gunicorn_config.py .
 
 RUN pip install -r requirements.txt
 
@@ -17,7 +17,7 @@ COPY . /app
 #RUN chmod +x gunicorn_starter.sh
 #ENTRYPOINT ["sh", "gunicorn_starter.sh"]
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 
 #ENTRYPOINT ["./gunicorn_starter.sh"]
 #CMD ["gunicorn"  , "--bind", "0.0.0.0:5000", "app:app"]
