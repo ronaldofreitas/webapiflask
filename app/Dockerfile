@@ -2,7 +2,16 @@ FROM python:3.9-slim AS develop-stage
 RUN python -m venv /venv
 ENV PATH="/venv/bin:$PATH"
 WORKDIR /app
-COPY requirements.txt /requirements.txt
+
+
+# local
+#COPY requirements.txt . 
+
+# jenkins gke
+#COPY ./app/requirements.txt .
+
+
+COPY ./app/requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 #CMD ["python", "main.py"]
 
