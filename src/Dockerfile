@@ -6,7 +6,7 @@ WORKDIR /app
 #COPY requirements.txt . 
 
 # jenkins gke
-COPY ./app/requirements.txt .
+COPY ./src/requirements.txt .
 #COPY ./src/gunicorn_config.py .
 
 RUN pip install -r requirements.txt
