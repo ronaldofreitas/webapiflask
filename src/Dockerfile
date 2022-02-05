@@ -17,7 +17,7 @@ COPY . /app
 #RUN chmod +x gunicorn_starter.sh
 #ENTRYPOINT ["sh", "gunicorn_starter.sh"]
 
-CMD gunicorn --bind 0.0.0.0:5000 app.wsgi:app
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
 
 #ENTRYPOINT ["./gunicorn_starter.sh"]
 #CMD ["gunicorn"  , "--bind", "0.0.0.0:5000", "app:app"]
