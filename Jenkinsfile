@@ -16,7 +16,7 @@ pipeline {
         stage('Build Image Docker') {
             steps {
                 script {
-                    dockerapp = docker.build("ronafreitasweb/webapiflask:v${env.BUILD_ID}",
+                    dockerapp = docker.build("ronafreitasweb/webapiflask:${env.BUILD_ID}",
                     '-f ./src/Dockerfile .')
                 }
             }
