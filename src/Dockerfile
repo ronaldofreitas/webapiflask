@@ -11,8 +11,9 @@ COPY ./src/requirements.txt .
 
 RUN pip install -r requirements.txt
 
-WORKDIR /app
 COPY . /app
+WORKDIR /app
+
 
 #RUN chmod +x gunicorn_starter.sh
 #ENTRYPOINT ["sh", "gunicorn_starter.sh"]
