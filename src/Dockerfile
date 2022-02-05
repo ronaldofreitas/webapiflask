@@ -15,7 +15,10 @@ RUN pip install -r requirements.txt
 WORKDIR /app
 COPY . /app
 
+RUN chmod +x ./gunicorn_starter.sh
+ENTRYPOINT ["sh", "gunicorn_starter.sh"]
+
 #ENTRYPOINT ["./gunicorn_starter.sh"]
-CMD gunicorn --chdir app main:app -w 2 --threads 2 -b 0.0.0.0:5000
+#CMD ["gunicorn"  , "--bind", "0.0.0.0:5000", "app:app"]
 #CMD ["gunicorn", "--workers=3", "--bind", "0.0.0.0:5000", "app:app"]
 #CMD ["gunicorn", "--workers=3", "--bind", "0.0.0.0:5000", "-c", "config.py", "app:app"]

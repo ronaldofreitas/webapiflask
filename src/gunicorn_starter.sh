@@ -1,2 +1,2 @@
-#!/bin/sh
-gunicorn --chdir app main:app -w 2 --threads 2 -b 0.0.0.0:5000
+#!/bin/bash
+exec gunicorn --config /app/gunicorn_config.py app.wsgi:app
