@@ -16,6 +16,9 @@ spec:
       - name: appflask
         image: ronafreitasweb/webapiflask:tagversion
         #image: ronafreitasweb/webapiflask:latest
+        
+        #image: ronafreitasweb/webapi:v2
+
         ports:
           - containerPort: 5000
 
