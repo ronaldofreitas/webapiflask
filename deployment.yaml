@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: appflask
+  name: appflask-deploy
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: appflask
@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: appflask
-        #image: ronafreitasweb/webapiflask:tagversion
-        image: ronafreitasweb/webapiflask:latest
+        image: ronafreitasweb/webapiflask:tagversion
+        #image: ronafreitasweb/webapiflask:latest
         ports:
           - containerPort: 5000
 
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: appflask
+  name: appflask-service
 spec:
   type: LoadBalancer # NodePort - LoadBalancer
   selector:
